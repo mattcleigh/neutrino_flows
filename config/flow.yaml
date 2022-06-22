@@ -23,7 +23,7 @@ dpset_kwargs: # The keyword arguments to create the jet deep set, passed to gnet
     do_res: True
     ctxt_in_all: True
     drp: 0.0
-  post_net_kwargs: # The keyword arguments for the post network in the DS, passed to gnets.modules.DenseNetwork
+  post_net_kwargs: # The keyword arguments for the post/final network in the DS, passed to gnets.modules.DenseNetwork
     num_blocks: 2
     hddn_dim: 64
     nrm: layer
