@@ -1,0 +1,9 @@
+h5py==3.6.0
+joblib==1.1.0
+matplotlib==3.5.2
+nflows==0.14
+numpy==1.21.2
+PyYAML==6.0
+scikit_learn==1.1.1
+torch==1.11.0
+tqdm==4.64.0

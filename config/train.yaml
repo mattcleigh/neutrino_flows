@@ -1,0 +1,20 @@
+val_frac: 0.1 # Splitting fraction for the validation set
+
+loader_kwargs:  # Arguments for the pytorch Dataloader class
+  pin_memory: true
+  batch_size: 256
+  num_workers: 0
+  shuffle: true
+
+trainer_kwargs: # Arguments for the Trainer class in nureg/trainer.py
+  patience: 50 # Early stopping patience
+  max_epochs: 200 # Max training epochs
+  grad_clip: 5 # Gradient clipping value (0 = no clip applied)
+  optim_dict: # Arguments for optimiser
+    name: adam # Name of the optimiser: adam, adamw, rmsp, sgd
+    lr: 0.0005 # Initial learning rate to use
+  sched_dict: # Learning rate scheduler
+    name: cosannwr # Name of scheduler: none, cosann, cosannwr
+    epochs_per_cycle: 2 # Period for the cyclic sheduers
+  chkp_every: 25 # How many epochs between saved checkpoints
+  tqdm_quiet: false # Silence the tqdm progress bars

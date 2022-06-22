@@ -1,0 +1,63 @@
+base_kwargs:
+  name: Test # Name to use for the network and its directory
+  save_dir: ./ # Where to save the network directory
+  device: gpu # Which device to initialise the network onto
+
+dpset_kwargs: # The keyword arguments to create the jet deep set, passed to gnets.modules.DeepSet()
+  pool_type: attn # The type of pooling operation to use: mean, sum, max or attn (attention)
+  attn_type: sum # If above is attn, is it a weighted "sum" or weighted "mean"
+  outp_dim: 8 # The output dimension of the entire deep set
+  feat_net_kwargs: # The keyword arguments for the feature network in the DS, passed to gnets.modules.DenseNetwork
+    outp_dim: 8
+    num_blocks: 2
+    hddn_dim: 64
+    nrm: layer
+    do_res: True
+    ctxt_in_all: True
+    drp: 0.0
+  attn_net_kwargs: # The keyword arguments for the attention network in the DS, passed to gnets.modules.DenseNetwork
+    outp_dim: 1
+    num_blocks: 2
+    hddn_dim: 32
+    nrm: layer
+    do_res: True
+    ctxt_in_all: True
+    drp: 0.0
+  post_net_kwargs: # The keyword arguments for the post network in the DS, passed to gnets.modules.DenseNetwork
+    num_blocks: 2
+    hddn_dim: 64
+    nrm: layer
+    do_res: True
+    ctxt_in_all: True
+    drp: 0.0
+
+embd_kwargs: # The keyword arguments for the embedding network, passed to gnets.modules.DenseNetwork
+  num_blocks: 1
+  n_lyr_pbk: 1
+  hddn_dim: 64
+  outp_dim: 32
+  nrm: none
+  act_h: lrlu
+  do_res: True
+  drp: 0.0
+
+flow_kwargs: # The keyword arguments for the INN, passed to gnets.transforms.stacked_norm_flow()
+  nstacks: 7 # Number of sequential stacks in the INN
+  param_func: cplng # Type of layer in the stack, cplng = coupling, made = autoregressive
+  invrt_func: rqs # Type of invertible operation, rqs = splines, aff = affine
+  net_kwargs: # Keyword arguments for network for learning the params of the invrt_func, passed to gnets.modules.DenseNetwork
+    num_blocks: 2
+    n_lyr_pbk: 2
+    hddn_dim: 64
+    nrm: layer
+    act_h: lrlu
+    do_res: True
+    ctxt_in_all: True
+    drp: 0.0
+  rqs_kwargs: # If using splines, then the configuration for the RQS
+    num_bins: 10  # The number of bins between knots
+    tail_bound: 4 # The limits of the splines
+    tails: linear # The behaviour of the function outside the limits (advised linear)
+  do_lu: true # If an LU-Linear is used between layers, otherwise it will use permutation
+  nrm: none # Name of the normalisation layer to insert in each stack
+
