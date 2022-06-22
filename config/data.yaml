@@ -1,4 +1,4 @@
-path: /srv/beegfs/scratch/groups/rodem/ttbar_evt_reco/data_share/20220204_ttbar_ljets_moreevents/ # The path to the folder containing the datasets
+path: /set/me/please/ # The path to the folder containing the datasets
 lep_vars: px,py,eta,log_energy # Which lepton kinematic features to use as inputs, see /nureg/physics/change_cords for options
 jet_vars: px,py,eta,log_energy # Which jet kinematic features to use as inputs
 out_vars: px,py,eta # Which neutrino kinematic features to use as outputs/targets
