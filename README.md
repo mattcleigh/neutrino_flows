@@ -1,6 +1,8 @@
 # neutrino_flows
 A public repository for a minimal working example in the neutrino flows project
 
+![A diagram showing the full neutrino-flows setup](./Flow.png)
+
 This repository facilitates the steps required the produce and save a fully trained
 conditional normalising flow using the pytorch and nflows libraries.
 
@@ -34,9 +36,7 @@ To run this script:
 1) Setup the environment
     - Either use the requirement.txt file to setup the appropriate python packages.
         - This project was tested with python 3.9
-    - Alternatively use the docker build file to create an image which can run
-    - Download the pre-built docker image from dockerhub here:
-        - TODO add url
+    - Alternatively use the docker build file to create an image which can run the package
 2) Download the data
     - The datafiles are a bit larger and thus are not stored in this repository
     - You can find them here:
