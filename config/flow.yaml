@@ -1,4 +1,4 @@
-base_kwargs:
+base_kwargs: # Base network arguments for saving and loading
   name: Test # Name to use for the network and its directory
   save_dir: ./ # Where to save the network directory
   device: gpu # Which device to initialise the network onto
@@ -8,27 +8,28 @@ dpset_kwargs: # The keyword arguments to create the jet deep set, passed to gnet
   attn_type: sum # If above is attn, is it a weighted "sum" or weighted "mean"
   outp_dim: 8 # The output dimension of the entire deep set
   feat_net_kwargs: # The keyword arguments for the feature network in the DS, passed to gnets.modules.DenseNetwork
-    outp_dim: 8
-    num_blocks: 2
-    hddn_dim: 64
-    nrm: layer
-    do_res: True
-    ctxt_in_all: True
-    drp: 0.0
+    outp_dim: 8 # Dimension of the output for the dense network
+    num_blocks: 2 # Number of sub blocks that make up the network
+    n_lyr_pbk: 1 # Number of linear layers that make up each block
+    hddn_dim: 64 # The width/dimension of all hidden layers
+    nrm: layer # Type of normalisation applied after each hideen layer: [none, layer, batch]
+    do_res: true # Use additive skip connection between the input/output of each BLOCK
+    ctxt_in_all: false # If the context tensor is provided at start of all blocks, or just at input
+    drp: 0.0 # Dropout rate after each hidden layer, (0 means no dropout)
   attn_net_kwargs: # The keyword arguments for the attention network in the DS, passed to gnets.modules.DenseNetwork
     outp_dim: 1
     num_blocks: 2
     hddn_dim: 32
     nrm: layer
-    do_res: True
-    ctxt_in_all: True
+    do_res: true
+    ctxt_in_all: false
     drp: 0.0
   post_net_kwargs: # The keyword arguments for the post/final network in the DS, passed to gnets.modules.DenseNetwork
     num_blocks: 2
     hddn_dim: 64
     nrm: layer
-    do_res: True
-    ctxt_in_all: True
+    do_res: true
+    ctxt_in_all: false
     drp: 0.0
 
 embd_kwargs: # The keyword arguments for the embedding network, passed to gnets.modules.DenseNetwork
@@ -51,13 +52,13 @@ flow_kwargs: # The keyword arguments for the INN, passed to gnets.transforms.sta
     hddn_dim: 64
     nrm: layer
     act_h: lrlu
-    do_res: True
-    ctxt_in_all: True
+    do_res: true
+    ctxt_in_all: false
     drp: 0.0
   rqs_kwargs: # If using splines, then the configuration for the RQS
     num_bins: 10  # The number of bins between knots
     tail_bound: 4 # The limits of the splines
     tails: linear # The behaviour of the function outside the limits (advised linear)
   do_lu: true # If an LU-Linear is used between layers, otherwise it will use permutation
-  nrm: none # Name of the normalisation layer to insert in each stack
+  nrm: none # Name of the normalisation layer to insert in each stack: [none, batch, act]
 
