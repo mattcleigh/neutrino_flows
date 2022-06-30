@@ -57,10 +57,9 @@ class NuRegData(Dataset):
 
         ## Get the list of files to use for the dataset (0 sample is reserved for test)
         if dset == "train":
-            file_list = list(Path(path).glob("events_*_selected*"))
-            file_list = [f for f in file_list if "0_selected" not in str(f)]
+            file_list = list(Path(path).glob("train*"))
         else:
-            file_list = [Path(path) / "events_0_selected.h5"]
+            file_list = [Path(path) / "test.h5"]
 
         ## Raise an error if there are no files found
         if not file_list:
@@ -72,7 +71,7 @@ class NuRegData(Dataset):
             "leptons": ["pt", "eta", "phi", "energy", "type"],
             "misc": ["njets", "nbjets"],
             "jets": ["pt", "eta", "phi", "energy", "is_tagged"],
-            "neutrinos": ["pt", "eta", "phi"],
+            "truth_neutrinos": ["pt", "eta", "phi"],
         }
 
         ## The data starts out as empty tensors
@@ -93,10 +92,6 @@ class NuRegData(Dataset):
                     if dataset == "misc":
                         new_lists = [table[ds] for ds in self.variables[dataset]]
                         self.data[dataset] += map(list, zip(*new_lists))
-
-                    ## The jets indices and match is not a names array
-                    elif dataset in ["jets_indices", "matchability", "decay_channel"]:
-                        self.data[dataset] += table[dataset][:].tolist()
 
                     ## The rest is a named tuple and we pull out specific columns
                     else:
@@ -146,7 +141,7 @@ class NuRegData(Dataset):
                 new_vars = self.lep_vars
             elif key == "jets":
                 new_vars = self.jet_vars
-            elif key == "neutrinos":
+            elif key == "truth_neutrinos":
                 new_vars = self.out_vars
             else:
                 continue

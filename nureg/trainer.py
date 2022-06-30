@@ -253,15 +253,11 @@ class Trainer:
             self.network.train()
             loader = self.train_loader
             T.set_grad_enabled(True)
-            if hasattr(self.train_set, "do_augment"):
-                self.train_set.do_augment = True
         else:
             mode = "valid"
             self.network.eval()
             loader = self.valid_loader
             T.set_grad_enabled(False)
-            if hasattr(self.valid_set, "do_augment"):
-                self.valid_set.do_augment = False
 
         ## Cycle through the batches provided by the selected loader
         for batch_idx, batch in enumerate(tqdm(loader, desc=mode, ncols=80)):
