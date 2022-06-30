@@ -17,7 +17,7 @@ dpset_kwargs: # The keyword arguments to create the jet deep set, passed to gnet
     ctxt_in_all: false # If the context tensor is provided at start of all blocks, or just at input
     drp: 0.0 # Dropout rate after each hidden layer, (0 means no dropout)
   attn_net_kwargs: # The keyword arguments for the attention network in the DS, passed to gnets.modules.DenseNetwork
-    outp_dim: 1
+    outp_dim: 1 # Number of attention heads
     num_blocks: 2
     hddn_dim: 32
     nrm: layer

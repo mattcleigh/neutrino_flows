@@ -25,8 +25,8 @@ In each of these file there are extensive comments outlining what each option do
     - Alternatively use the docker build file to create an image which can run the package
 2) Download the data
     - The datafiles are a bit larger and thus are not stored in this repository
-    - You can find them here:
-        - TODO: add url
+    - You can find them on Zenodo:
+        - doi: 10.5281/zenodo.6782987
     - Make sure that the "path" keyword in config/train.yaml points to the downloaded folder
 3) Specify the save path for the flow
     - This is done by setting the "base_kwargs/name" and "base_kwargs/save_dir" in config/flow.yaml
