@@ -5,7 +5,7 @@ A public repository for a minimal working example in the neutrino flows project
 
 This repository facilitates the steps required the produce and save a fully trained
 conditional normalising flow for neutrino regression.
-- Associated paper: TODO add link
+- Associated paper: https://arxiv.org/abs/2207.00664
 - Built using the pytorch and nflows libraries.
 
 ## Configuration
